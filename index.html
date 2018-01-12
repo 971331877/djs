@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .time{
+            width: 1000px;
+            height: 100px;
+            margin: 200px auto;
+            font-size: 50px;
+            line-height: 100px;
+            text-align: center;
+            color: aquamarine;
+            background: black;
+            transition: all 10s 0.1s  ease ;
+
+
+        }
+        .time:hover{
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+<body>
+ <div class="time">
+     距离过年还有  <span id="days"></span>天
+     <span id="hours"></span>小时 <span id="minutes"></span>分钟
+     <span id="seconds"></span>秒
+ </div>
+</body>
+<script>
+    // let date=new Date(); ////////////1
+    // console.log(date);
+    // let date2=new Date(2018,1,15,12,0,0);//月份信息都是0-11；
+    // console.log(date2);
+    // //
+    // console.log(date.getFullYear()); // 年
+    // console.log(date.getMonth());// 月
+    // console.log(date.getDate());  // 日
+    // console.log(date.getDay());  //  星期 1 2 3 4 5 6 0
+    // console.log(date.getHours());// 几点钟
+    // console.log(date.getMinutes());// 获取分钟
+    // console.log(date.getSeconds());// 秒
+    // console.log(date.getMilliseconds()); // 毫秒
+    // console.log(date.getUTCHours()); // 国际时间
+    // console.log(date.getTime());  // 时间戳  指的是从1970 1 1 0 0到当前这个日期对象所表示的时间
+    // // 所经历过得毫秒数
+    // let start=new Date(2017,9,30,12,0,0);
+    // let startTime=start.getTime();
+    // let nowTime=date.getTime();
+    // let cha=nowTime-startTime;
+    // console.log(cha/(1000*60*60*24));
+    // //设置
+    // date.setFullYear(2019);
+    // date.setMonth(5);
+    // date.setDate(1);
+    // date.setHours(12);
+    // date.setMinutes(0);
+    // date.setSeconds(0);
+    // date.setMilliseconds(0);
+    // console.log(date);
+    //   3 33333333333333333333333333/
+// let future=new Date();
+    // future.setTime(future.getTime()+1000*60*1000);
+    // console.log(future)
+    let daysEle=document.querySelector("#days");
+    let hoursEle=document.querySelector("#hours");
+    let minutesEle=document.querySelector("#minutes");
+    let secondsEle=document.querySelector("#seconds");
+  let target=new Date(2018,1,15,0,0,0);
+  function djs() {
+  let now=new Date();
+  let targetTime=target.getTime();
+  let nowTime=now.getTime();
+  let cha=targetTime-nowTime;
+  let days=Math.floor(cha/(1000*60*60*24));
+ daysEle.innerHTML=setZero(days);
+ let hours=Math.floor(cha/(1000*60*60))%24;
+ hoursEle.innerHTML=setZero(hours);
+ let minutes=Math.floor(cha/(1000*60))%60;
+ minutesEle.innerHTML=setZero(minutes);
+ let seconds=Math.floor(cha/1000)%60;
+ secondsEle.innerHTML=setZero(seconds);
+ now=null;
+  }
+  function setZero (n) {
+      if(n<10){
+          return "0"+n;
+      }else {
+          return n;
+      }
+  }
+  djs();
+  setInterval(djs,1000);
+</script>
+</html>
